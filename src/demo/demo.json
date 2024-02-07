@@ -1,1 +1,12 @@
-
+{
+  "components": {
+    "ChildComponent": {
+      "bindings": [
+        {
+          "key": "someData",
+          "target": "overData"
+        }
+      ]
+    }
+  }
+}

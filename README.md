@@ -1,8 +1,7 @@
-# dataCom
+# DataNexus
 
-MainBus Vue 组件
-介绍
-mainBus 是一个 Vue 组件，旨在提供中央状态管理和事件广播功能。它允许在 Vue 应用中的不同组件间共享数据，处理加载状态和错误信息，并支持数据项到共享数据源的动态绑定。
+DataNexus Vue 组件介绍
+DataNexus 是一个 Vue 组件，旨在提供中央状态管理和事件广播功能。它允许在 Vue 应用中的不同组件间共享数据，处理加载状态和错误信息，并支持数据项到共享数据源的动态绑定。
 
 特性
 共享数据管理：实现多个组件之间的数据共享。
@@ -14,38 +13,38 @@ mainBus 是一个 Vue 组件，旨在提供中央状态管理和事件广播功�
 
 
 安装
-将 mainBus.vue 文件放置在您的 Vue.js 项目的 components 目录中。
+将 DataNexus文件夹放置在您的 Vue.js 项目的 components 目录中。
 
 /****快速开始指南*//
 
 引入并注册组件
-在您的 Vue 应用中引入并注册 mainBus 组件。
+在您的 Vue 应用中引入并注册 DataNexus 组件。
 
  ```javascript
-import MainBus from 'path/to/mainBus.vue';
+import DataNexus from 'path/to/DataNexus.vue';
 
 
 export default {
   components: {
-    MainBus
+    DataNexus
   }
   // ...
 }
  ```
 在父组件中使用
-在父组件的模板中，将 MainBus 组件包裹在需要共享状态的子组件外。
+在父组件的模板中，将 DataNexus 组件包裹在需要共享状态的子组件外。
 
  ```html
 <template>
-  <main-bus>
+  <data-Nexus >
     <!-- 子组件放置在这里 -->
-  </main-bus>
+  </data-Nexus>
 </template>
  ```
  
  
 在子组件中使用
-在子组件中，通过依赖注入使用 mainBus 提供的方法。
+在子组件中，通过依赖注入使用 DataNexus 提供的方法。
 
  ```javascript
 export default {
@@ -131,7 +130,7 @@ export default {
 loadBindingsFromJSON(jsonURL): 从JSON URL加载数据绑定配置。
  ```html
 <template>
-  <main-bus ref="mainBusRef">
+  <main-bus ref="DataNexusRef">
     <!-- 子组件放置在这里 -->
   </main-bus>
 </template>
@@ -140,7 +139,7 @@ loadBindingsFromJSON(jsonURL): 从JSON URL加载数据绑定配置。
 ```javascript
 export default {
   mounted() {
-      this.$refs.mainBusRef.loadBindingsFromJSON('./mainBus.json')
+      this.$refs.DataNexusRef.loadBindingsFromJSON('./DataNexus.json')//这里的json文件名称与路径自定义
   }
 }
 ```

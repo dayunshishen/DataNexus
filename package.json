@@ -1,13 +1,21 @@
 {
-  "name": "dataCommunication",
+  "name": "datanexus",
   "version": "1.0.0",
-  "private": true,
-  "description": "",
+  "private": false,
+  "description": "DataNexus Vue 组件介绍\r DataNexus 是一个 Vue 组件，旨在提供中央状态管理和事件广播功能。它允许在 Vue 应用中的不同组件间共享数据，处理加载状态和错误信息，并支持数据项到共享数据源的动态绑定。",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no src specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "陈宇恒 chenyuheng19930507@gmail.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dayunshishen/DataNexus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dayunshishen/DataNexus/issues"
+  },
+  "homepage": "https://github.com/dayunshishen/DataNexus#readme"
 }

@@ -1,14 +1,16 @@
   <template>
-    <div>
-      <slot></slot> <!-- 使用 slot 来插入子组件 -->
-    </div>
+    <DataNexus>
+      <div></div>
+    </DataNexus>
   </template>
 
 
   <script>
     import { setMainBusInstance } from './mainBusPluginSystem.js';
+    import DataNexus from "../DataNexus";
     export default  {
-      name: 'DataNexus',
+      name: 'mainBus',
+      components: {DataNexus},
       data() {
         return {
           sharedData: {}, // 用于存储共享数据

@@ -174,7 +174,45 @@ export default {
 }
 ```
 
+ registerPlugin 函数
+registerPlugin 函数允许您在 DataNexus 组件内注册并安装自定义插件。这使得您可以将额外的功能或逻辑动态地添加到中央事件总线中。
 
- 
+如何使用
+要使用 registerPlugin 函数，您需要确保您的插件对象包含一个 install 方法。此方法将在注册插件时被调用，并接收 DataNexus 实例作为参数。
+
+以下是一个插件注册的基本步骤：
+
+创建一个插件对象，确保它有一个 install 方法。
+调用 registerPlugin 方法，并传递插件名称和插件对象。
+示例
+假设我们有一个简单的插件，名为 MyPlugin，它包含一个基本的安装方法。
+
+```javascript
+// MyPlugin.js
+export default {
+  install(mainBus) {
+    // 在这里添加你的插件逻辑
+    mainBus.myPluginMethod = function() {
+      console.log("MyPlugin 方法被调用");
+    };
+  }
+};
+```
+要在 DataNexus 组件中注册这个插件，请按照以下步骤操作：
+
+```javascript
+// 在你的 Vue 组件中
+import MyPlugin from './MyPlugin';
+
+export default {
+  name: 'YourComponent',
+  mounted() {
+    this.mainBus.registerPlugin('MyPlugin', MyPlugin);
+  }
+};
+```
+这样，MyPlugin 将被安装到 DataNexus 实例中，您可以在任何通过 mainBus 访问到的地方使用 myPluginMethod 方法。
+
+
 
 

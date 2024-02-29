@@ -6,7 +6,6 @@
 
 
   <script>
-    import { setMainBusInstance } from './mainBusPluginSystem.js';
     export default  {
       name: 'DataNexus',
       data() {
@@ -27,7 +26,8 @@
           emitGlobalEvent: this.emitGlobalEvent, // 新增全局事件广播
           addSharedDataKey: this.bindSharedData,
           removeSharedDataKey: this.removeSharedDataKey,
-          getSharedData: this.getSharedData
+          getSharedData: this.getSharedData,
+          registerPlugin: this.registerPlugin
         }
       },
       methods: {
@@ -175,7 +175,11 @@
           //   this.$set(this.sharedData, uniqueKey, this.sharedData[sharedKey]);
           // }
         },
-        // 删除数据键的方法
+        /**
+         * 删除共享数据并通知所有绑定的组件。
+         * @param {String} componentName - 更新数据的组件名称。
+         * @param {String} dataKey - 更新的数据键。
+         */
         removeSharedDataKey(componentName, dataKey) {
           // 构建唯一标识符
           const uniqueKey = `${componentName}_${dataKey}`;
@@ -201,7 +205,11 @@
           }
         },
 
-        // 获取共享数据键的方法
+        /**
+         * 获取共享数据。
+         * @param {String} componentName - 更新数据的组件名称。
+         * @param {String} dataKey - 更新的数据键。
+         */
         getSharedData(componentName, dataKey) {
           // 构建唯一标识符来识别绑定的共享数据
           const uniqueKey = `${componentName}_${dataKey}`;
@@ -218,9 +226,29 @@
           // 如果没有找到绑定的共享数据，返回 undefined 或其他默认值
           return undefined;
         },
+        /**
+         * 注册插件。
+         * @param {string} pluginName - 插件名称。
+         * @param {object} plugin - 插件对象，必须包含一个名为 'install' 的方法。
+         */
+        registerPlugin(pluginName, plugin) {
+          if (!this.sharedData) {
+            console.error('MainBus instance has not been created yet.');
+            return;
+          }
+
+          if (plugin.install && typeof plugin.install === 'function') {
+            plugin.install(this);
+            console.log(`插件 ${pluginName} 安装成功`);
+          } else {
+            console.error(`Plugin "${pluginName}" must include an 'install' method.`);
+          }
+        }
       },
+
+
       created() {
-        setMainBusInstance(this);
+        this.$root.mainBusInstance = this;
       },
     };
   </script>
